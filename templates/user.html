@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}User details{% endblock %}
+{% block content %}
+<h1>Information about {{user.username}}:</h1>
+<p>First Name: {{ user.first_name }}</p>
+<p>Last Name: {{ user.last_name }}</p>
+<p>Email Address: {{ user.email }}</p>
+
+<h2>Feedback History:</h2>
+<ul>
+    {% for post in user.posts %}
+    <li>
+        <p>{{ post.title }}</p>
+        <p>{{ post.content }}</p>
+        <a href="/feedback/{{ post.id }}/update">Edit</a>
+        <a href="/feedback/{{ post.id }}/delete">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="/users/{{user.username}}/feedback/add">Add Feedback</a>
+<a href="/users/{{user.username}}/delete">Delete User</a>
+{% endblock %}
